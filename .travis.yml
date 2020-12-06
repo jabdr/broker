@@ -30,7 +30,7 @@ matrix:
     - env: CC=clang
 
 install:
-  - pip install meson ninja
+  - pip3 install meson ninja
 
 before_script:
   - mkdir -p /usr/local/lib/pkgconfig /opt/naemon/include
