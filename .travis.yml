@@ -1,3 +1,5 @@
+sudo: true
+
 os:
   - linux
 
@@ -35,11 +37,10 @@ install:
   - pip3 install meson ninja
 
 before_script:
-  - mkdir -p /usr/local/lib/pkgconfig /opt/naemon/include
-  - ln -s $(readlink -f devtools/ci/naemon) /opt/naemon/include/naemon
-  - ln -s $(readlink -f devtools/ci/naemon.pc) /usr/local/lib/pkgconfig/naemon.pc
+  - sudo mkdir -p /usr/local/lib/pkgconfig /opt/naemon/include
+  - sudo ln -s $(readlink -f devtools/ci/naemon) /opt/naemon/include/naemon
+  - sudo ln -s $(readlink -f devtools/ci/naemon.pc) /usr/local/lib/pkgconfig/naemon.pc
 
 script:
   - meson builddir
   - meson compile -C builddir
-  - meson test -C builddir
