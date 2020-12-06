@@ -8,6 +8,22 @@ dist: bionic
 
 group: travis_latest
 
+addons:
+  apt:
+    packages:
+      - git
+      - python3-pip
+      - cmake
+      - build-essential
+      - libglib2.0-dev
+      - libgearman-dev
+      - uuid-dev
+      - libuchardet-dev
+      - libjson-c-dev
+      - pkg-config
+      - libssl-dev
+      - librabbitmq-dev
+
 matrix:
   include:
     - env: CC=gcc
@@ -15,6 +31,11 @@ matrix:
 
 install:
   - pip install meson ninja
+
+before_script:
+  - mkdir -p /usr/local/lib/pkgconfig /opt/naemon/include
+  - ln -s $(readlink -f devtools/ci/naemon) /opt/naemon/include/naemon
+  - ln -s $(readlink -f devtools/ci/naemon.pc) /usr/local/lib/pkgconfig/naemon.pc
 
 script:
   - meson builddir
