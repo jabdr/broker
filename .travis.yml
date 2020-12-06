@@ -30,8 +30,8 @@ addons:
 
 matrix:
   include:
-    - env: CC=gcc
-    - env: CC=clang
+    - env: CC=gcc CXX=g++
+    - env: CC=clang CXX=clang++
 
 install:
   - pip3 install meson ninja
